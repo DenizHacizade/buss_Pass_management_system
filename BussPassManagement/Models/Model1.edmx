@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="busspassdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="LocationID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="DriverInfo">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassNumber" Type="varchar" MaxLength="150" />
+          <Property Name="FullName" Type="varchar" MaxLength="150" />
+          <Property Name="IdentityType" Type="varchar" MaxLength="150" />
+          <Property Name="IdentityCardno" Type="varchar" MaxLength="150" />
+          <Property Name="DestID" Type="int" />
+          <Property Name="FromDate" Type="varchar" MaxLength="150" />
+          <Property Name="ToDate" Type="varchar" MaxLength="150" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="CompID" Type="int" />
+          <Property Name="ContactID" Type="int" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="CityName" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="destination">
+          <Key>
+            <PropertyRef Name="DestinationID" />
+          </Key>
+          <Property Name="DestinationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Starting_loc" Type="int" />
+          <Property Name="Ending_loc" Type="int" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="LocatiOnID" />
+          </Key>
+          <Property Name="LocatiOnID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="RegionID" Type="int" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="RegionName" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleType" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="subscription">
+          <Key>
+            <PropertyRef Name="SubID" />
+          </Key>
+          <Property Name="SubID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sub_type" Type="varchar" MaxLength="20" />
+          <Property Name="Cost" Type="int" />
+        </EntityType>
+        <EntityType Name="tbladmin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="varchar" MaxLength="120" />
+          <Property Name="UserName" Type="varchar" MaxLength="120" />
+          <Property Name="Password" Type="varchar" MaxLength="200" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="ContactID" Type="int" />
+        </EntityType>
+        <EntityType Name="buscatg">
+          <Key>
+            <PropertyRef Name="BusID" />
+          </Key>
+          <Property Name="BusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompID" Type="int" />
+          <Property Name="CategName" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="busCompany">
+          <Key>
+            <PropertyRef Name="CompID" />
+          </Key>
+          <Property Name="CompID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompName" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="buses">
+          <Key>
+            <PropertyRef Name="BusID" />
+          </Key>
+          <Property Name="BusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalSeats" Type="int" />
+          <Property Name="Avail_seats" Type="int" />
+        </EntityType>
+        <Association Name="FK__buscatg__CompID__6D9742D9">
+          <End Role="busCompany" Type="Self.busCompany" Multiplicity="0..1" />
+          <End Role="buscatg" Type="Self.buscatg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="busCompany">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="buscatg">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buses__BusID__6E8B6712">
+          <End Role="buscatg" Type="Self.buscatg" Multiplicity="1" />
+          <End Role="buses" Type="Self.buses" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="buscatg">
+              <PropertyRef Name="BusID" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="BusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__city__RegionID__6ABAD62E">
+          <End Role="region" Type="Self.region" Multiplicity="0..1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__destinati__Start__68D28DBC">
+          <End Role="location" Type="Self.location" Multiplicity="0..1" />
+          <End Role="destination" Type="Self.destination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="LocatiOnID" />
+            </Principal>
+            <Dependent Role="destination">
+              <PropertyRef Name="Starting_loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverInf__CompI__5C6CB6D7">
+          <End Role="busCompany" Type="Self.busCompany" Multiplicity="0..1" />
+          <End Role="DriverInfo" Type="Self.DriverInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="busCompany">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="DriverInfo">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverInf__Conta__6CA31EA0">
+          <End Role="contact" Type="Self.contact" Multiplicity="0..1" />
+          <End Role="DriverInfo" Type="Self.DriverInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="DriverInfo">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__location__CityID__69C6B1F5">
+          <End Role="city" Type="Self.city" Multiplicity="0..1" />
+          <End Role="location" Type="Self.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbladmin__Contac__4D2A7347">
+          <End Role="contact" Type="Self.contact" Multiplicity="0..1" />
+          <End Role="tbladmin" Type="Self.tbladmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="tbladmin">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbladmin__RoleID__22401542">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="tbladmin" Type="Self.tbladmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tbladmin">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="busspassdbModelStoreContainer">
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="Communication" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverInfo" EntityType="Self.DriverInfo" Schema="Human" store:Type="Tables" />
+          <EntitySet Name="city" EntityType="Self.city" Schema="Line" store:Type="Tables" />
+          <EntitySet Name="destination" EntityType="Self.destination" Schema="Line" store:Type="Tables" />
+          <EntitySet Name="location" EntityType="Self.location" Schema="Line" store:Type="Tables" />
+          <EntitySet Name="region" EntityType="Self.region" Schema="Line" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="System" store:Type="Tables" />
+          <EntitySet Name="subscription" EntityType="Self.subscription" Schema="System" store:Type="Tables" />
+          <EntitySet Name="tbladmin" EntityType="Self.tbladmin" Schema="System" store:Type="Tables" />
+          <EntitySet Name="buscatg" EntityType="Self.buscatg" Schema="Vehicle" store:Type="Tables" />
+          <EntitySet Name="busCompany" EntityType="Self.busCompany" Schema="Vehicle" store:Type="Tables" />
+          <EntitySet Name="buses" EntityType="Self.buses" Schema="Vehicle" store:Type="Tables" />
+          <AssociationSet Name="FK__buscatg__CompID__6D9742D9" Association="Self.FK__buscatg__CompID__6D9742D9">
+            <End Role="busCompany" EntitySet="busCompany" />
+            <End Role="buscatg" EntitySet="buscatg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buses__BusID__6E8B6712" Association="Self.FK__buses__BusID__6E8B6712">
+            <End Role="buscatg" EntitySet="buscatg" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__city__RegionID__6ABAD62E" Association="Self.FK__city__RegionID__6ABAD62E">
+            <End Role="region" EntitySet="region" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FK__destinati__Start__68D28DBC" Association="Self.FK__destinati__Start__68D28DBC">
+            <End Role="location" EntitySet="location" />
+            <End Role="destination" EntitySet="destination" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverInf__CompI__5C6CB6D7" Association="Self.FK__DriverInf__CompI__5C6CB6D7">
+            <End Role="busCompany" EntitySet="busCompany" />
+            <End Role="DriverInfo" EntitySet="DriverInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverInf__Conta__6CA31EA0" Association="Self.FK__DriverInf__Conta__6CA31EA0">
+            <End Role="contact" EntitySet="contact" />
+            <End Role="DriverInfo" EntitySet="DriverInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__location__CityID__69C6B1F5" Association="Self.FK__location__CityID__69C6B1F5">
+            <End Role="city" EntitySet="city" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbladmin__Contac__4D2A7347" Association="Self.FK__tbladmin__Contac__4D2A7347">
+            <End Role="contact" EntitySet="contact" />
+            <End Role="tbladmin" EntitySet="tbladmin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbladmin__RoleID__22401542" Association="Self.FK__tbladmin__RoleID__22401542">
+            <End Role="role" EntitySet="role" />
+            <End Role="tbladmin" EntitySet="tbladmin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="busspassdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LocationID" Type="Int32" />
+          <NavigationProperty Name="DriverInfo" Relationship="Self.FK__DriverInf__Conta__6CA31EA0" FromRole="contact" ToRole="DriverInfo" />
+          <NavigationProperty Name="tbladmin" Relationship="Self.FK__tbladmin__Contac__4D2A7347" FromRole="contact" ToRole="tbladmin" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DriverInfo">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassNumber" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IdentityType" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IdentityCardno" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DestID" Type="Int32" />
+          <Property Name="FromDate" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ToDate" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="CompID" Type="Int32" />
+          <Property Name="ContactID" Type="Int32" />
+          <NavigationProperty Name="contact" Relationship="Self.FK__DriverInf__Conta__6CA31EA0" FromRole="DriverInfo" ToRole="contact" />
+          <NavigationProperty Name="busCompany" Relationship="Self.FK__DriverInf__CompI__5C6CB6D7" FromRole="DriverInfo" ToRole="busCompany" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="CityName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="region" Relationship="Self.FK__city__RegionID__6ABAD62E" FromRole="city" ToRole="region" />
+          <NavigationProperty Name="location" Relationship="Self.FK__location__CityID__69C6B1F5" FromRole="city" ToRole="location" />
+        </EntityType>
+        <EntityType Name="destination">
+          <Key>
+            <PropertyRef Name="DestinationID" />
+          </Key>
+          <Property Name="DestinationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Starting_loc" Type="Int32" />
+          <Property Name="Ending_loc" Type="Int32" />
+          <NavigationProperty Name="location" Relationship="Self.FK__destinati__Start__68D28DBC" FromRole="destination" ToRole="location" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="LocatiOnID" />
+          </Key>
+          <Property Name="LocatiOnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="RegionID" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="Self.FK__location__CityID__69C6B1F5" FromRole="location" ToRole="city" />
+          <NavigationProperty Name="destination" Relationship="Self.FK__destinati__Start__68D28DBC" FromRole="location" ToRole="destination" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="city" Relationship="Self.FK__city__RegionID__6ABAD62E" FromRole="region" ToRole="city" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbladmin" Relationship="Self.FK__tbladmin__RoleID__22401542" FromRole="role" ToRole="tbladmin" />
+        </EntityType>
+        <EntityType Name="subscription">
+          <Key>
+            <PropertyRef Name="SubID" />
+          </Key>
+          <Property Name="SubID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sub_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbladmin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminName" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="ContactID" Type="Int32" />
+          <NavigationProperty Name="contact" Relationship="Self.FK__tbladmin__Contac__4D2A7347" FromRole="tbladmin" ToRole="contact" />
+          <NavigationProperty Name="role" Relationship="Self.FK__tbladmin__RoleID__22401542" FromRole="tbladmin" ToRole="role" />
+        </EntityType>
+        <EntityType Name="buscatg">
+          <Key>
+            <PropertyRef Name="BusID" />
+          </Key>
+          <Property Name="BusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompID" Type="Int32" />
+          <Property Name="CategName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="busCompany" Relationship="Self.FK__buscatg__CompID__6D9742D9" FromRole="buscatg" ToRole="busCompany" />
+          <NavigationProperty Name="buses" Relationship="Self.FK__buses__BusID__6E8B6712" FromRole="buscatg" ToRole="buses" />
+        </EntityType>
+        <EntityType Name="busCompany">
+          <Key>
+            <PropertyRef Name="CompID" />
+          </Key>
+          <Property Name="CompID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DriverInfo" Relationship="Self.FK__DriverInf__CompI__5C6CB6D7" FromRole="busCompany" ToRole="DriverInfo" />
+          <NavigationProperty Name="buscatg" Relationship="Self.FK__buscatg__CompID__6D9742D9" FromRole="busCompany" ToRole="buscatg" />
+        </EntityType>
+        <EntityType Name="buses">
+          <Key>
+            <PropertyRef Name="BusID" />
+          </Key>
+          <Property Name="BusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalSeats" Type="Int32" />
+          <Property Name="Avail_seats" Type="Int32" />
+          <NavigationProperty Name="buscatg" Relationship="Self.FK__buses__BusID__6E8B6712" FromRole="buses" ToRole="buscatg" />
+        </EntityType>
+        <Association Name="FK__DriverInf__Conta__6CA31EA0">
+          <End Role="contact" Type="Self.contact" Multiplicity="0..1" />
+          <End Role="DriverInfo" Type="Self.DriverInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="DriverInfo">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbladmin__Contac__4D2A7347">
+          <End Role="contact" Type="Self.contact" Multiplicity="0..1" />
+          <End Role="tbladmin" Type="Self.tbladmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="tbladmin">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DriverInf__CompI__5C6CB6D7">
+          <End Role="busCompany" Type="Self.busCompany" Multiplicity="0..1" />
+          <End Role="DriverInfo" Type="Self.DriverInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="busCompany">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="DriverInfo">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__city__RegionID__6ABAD62E">
+          <End Role="region" Type="Self.region" Multiplicity="0..1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__location__CityID__69C6B1F5">
+          <End Role="city" Type="Self.city" Multiplicity="0..1" />
+          <End Role="location" Type="Self.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__destinati__Start__68D28DBC">
+          <End Role="location" Type="Self.location" Multiplicity="0..1" />
+          <End Role="destination" Type="Self.destination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="LocatiOnID" />
+            </Principal>
+            <Dependent Role="destination">
+              <PropertyRef Name="Starting_loc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbladmin__RoleID__22401542">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="tbladmin" Type="Self.tbladmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="tbladmin">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buscatg__CompID__6D9742D9">
+          <End Role="busCompany" Type="Self.busCompany" Multiplicity="0..1" />
+          <End Role="buscatg" Type="Self.buscatg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="busCompany">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="buscatg">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__buses__BusID__6E8B6712">
+          <End Role="buscatg" Type="Self.buscatg" Multiplicity="1" />
+          <End Role="buses" Type="Self.buses" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="buscatg">
+              <PropertyRef Name="BusID" />
+            </Principal>
+            <Dependent Role="buses">
+              <PropertyRef Name="BusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="busspassdbEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contact" EntityType="Self.contact" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="DriverInfo" EntityType="Self.DriverInfo" />
+          <EntitySet Name="city" EntityType="Self.city" />
+          <EntitySet Name="destination" EntityType="Self.destination" />
+          <EntitySet Name="location" EntityType="Self.location" />
+          <EntitySet Name="region" EntityType="Self.region" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="subscription" EntityType="Self.subscription" />
+          <EntitySet Name="tbladmin" EntityType="Self.tbladmin" />
+          <EntitySet Name="buscatg" EntityType="Self.buscatg" />
+          <EntitySet Name="busCompany" EntityType="Self.busCompany" />
+          <EntitySet Name="buses" EntityType="Self.buses" />
+          <AssociationSet Name="FK__DriverInf__Conta__6CA31EA0" Association="Self.FK__DriverInf__Conta__6CA31EA0">
+            <End Role="contact" EntitySet="contact" />
+            <End Role="DriverInfo" EntitySet="DriverInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbladmin__Contac__4D2A7347" Association="Self.FK__tbladmin__Contac__4D2A7347">
+            <End Role="contact" EntitySet="contact" />
+            <End Role="tbladmin" EntitySet="tbladmin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DriverInf__CompI__5C6CB6D7" Association="Self.FK__DriverInf__CompI__5C6CB6D7">
+            <End Role="busCompany" EntitySet="busCompany" />
+            <End Role="DriverInfo" EntitySet="DriverInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__city__RegionID__6ABAD62E" Association="Self.FK__city__RegionID__6ABAD62E">
+            <End Role="region" EntitySet="region" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FK__location__CityID__69C6B1F5" Association="Self.FK__location__CityID__69C6B1F5">
+            <End Role="city" EntitySet="city" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="FK__destinati__Start__68D28DBC" Association="Self.FK__destinati__Start__68D28DBC">
+            <End Role="location" EntitySet="location" />
+            <End Role="destination" EntitySet="destination" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbladmin__RoleID__22401542" Association="Self.FK__tbladmin__RoleID__22401542">
+            <End Role="role" EntitySet="role" />
+            <End Role="tbladmin" EntitySet="tbladmin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buscatg__CompID__6D9742D9" Association="Self.FK__buscatg__CompID__6D9742D9">
+            <End Role="busCompany" EntitySet="busCompany" />
+            <End Role="buscatg" EntitySet="buscatg" />
+          </AssociationSet>
+          <AssociationSet Name="FK__buses__BusID__6E8B6712" Association="Self.FK__buses__BusID__6E8B6712">
+            <End Role="buscatg" EntitySet="buscatg" />
+            <End Role="buses" EntitySet="buses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="busspassdbModelStoreContainer" CdmEntityContainer="busspassdbEntities5">
+          <EntitySetMapping Name="contact">
+            <EntityTypeMapping TypeName="busspassdbModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="busspassdbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverInfo">
+            <EntityTypeMapping TypeName="busspassdbModel.DriverInfo">
+              <MappingFragment StoreEntitySet="DriverInfo">
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="PassNumber" ColumnName="PassNumber" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
+                <ScalarProperty Name="IdentityCardno" ColumnName="IdentityCardno" />
+                <ScalarProperty Name="DestID" ColumnName="DestID" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="city">
+            <EntityTypeMapping TypeName="busspassdbModel.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="destination">
+            <EntityTypeMapping TypeName="busspassdbModel.destination">
+              <MappingFragment StoreEntitySet="destination">
+                <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
+                <ScalarProperty Name="Starting_loc" ColumnName="Starting_loc" />
+                <ScalarProperty Name="Ending_loc" ColumnName="Ending_loc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="location">
+            <EntityTypeMapping TypeName="busspassdbModel.location">
+              <MappingFragment StoreEntitySet="location">
+                <ScalarProperty Name="LocatiOnID" ColumnName="LocatiOnID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="region">
+            <EntityTypeMapping TypeName="busspassdbModel.region">
+              <MappingFragment StoreEntitySet="region">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="busspassdbModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subscription">
+            <EntityTypeMapping TypeName="busspassdbModel.subscription">
+              <MappingFragment StoreEntitySet="subscription">
+                <ScalarProperty Name="SubID" ColumnName="SubID" />
+                <ScalarProperty Name="Sub_type" ColumnName="Sub_type" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbladmin">
+            <EntityTypeMapping TypeName="busspassdbModel.tbladmin">
+              <MappingFragment StoreEntitySet="tbladmin">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buscatg">
+            <EntityTypeMapping TypeName="busspassdbModel.buscatg">
+              <MappingFragment StoreEntitySet="buscatg">
+                <ScalarProperty Name="BusID" ColumnName="BusID" />
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+                <ScalarProperty Name="CategName" ColumnName="CategName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="busCompany">
+            <EntityTypeMapping TypeName="busspassdbModel.busCompany">
+              <MappingFragment StoreEntitySet="busCompany">
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buses">
+            <EntityTypeMapping TypeName="busspassdbModel.buses">
+              <MappingFragment StoreEntitySet="buses">
+                <ScalarProperty Name="BusID" ColumnName="BusID" />
+                <ScalarProperty Name="TotalSeats" ColumnName="TotalSeats" />
+                <ScalarProperty Name="Avail_seats" ColumnName="Avail_seats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

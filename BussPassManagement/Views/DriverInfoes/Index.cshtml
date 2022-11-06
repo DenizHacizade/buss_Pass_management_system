@@ -1,0 +1,93 @@
+﻿@model IEnumerable<BussPassManagement.Models.DriverInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Driver Informations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PassNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentityType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentityCardno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentityType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentityCardno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DriverID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DriverID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DriverID })
+        </td>
+    </tr>
+}
+
+</table>

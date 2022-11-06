@@ -1,0 +1,398 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.to-right{
+   float:right;
+}
+
+.div-bck {
+    background-image: url('../photo/road[818].jpg');
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100%;
+}
+
+.div-bck-2 {
+    background-color: aqua;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    background-size: 100%;
+    position:inherit;
+}
+
+label {
+    display: block;
+}
+
+label > p {
+        display: inline-block;
+    }
+
+.div-bck h2 {
+    text-align: center;
+    color: white;
+   font-family: 'Cabin', cursive;
+   /* font-family: 'Alfa Slab One', cursive;*/
+    font-size: 35px;
+}
+.div-bck h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 50px;
+}
+
+.container img{
+    width:30%;
+}
+
+.col-form{
+    padding:20px 0;
+    margin: 0 auto;
+    color:#000;
+    border:3px dashed #998100;
+    border-style:double;
+}
+
+.form-field label{
+    color:aliceblue;
+}
+
+/*------------------*/
+
+/*-------------*/
+ 
+.jumbotron {
+    background: #358CCE;
+    color: #FFF;
+    border-radius: 0px;
+}
+
+.jumbotron-sm {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.jumbotron small {
+    color: #FFF;
+}
+
+.h1 small {
+    font-size: 24px;
+}
+
+/*-----about---------*/
+
+.cta-padding35 {
+    padding: 35px 0 35px;
+    background-color: orange;
+    color: #fff;
+}
+/* Buttons */
+.site-btn {
+    font-size: 14px;
+    padding: 13px 30px;
+    border-radius: 5px;
+    border: 1px solid orange;
+    min-width: 200px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: orange;
+    background-color: transparent;
+    transition: all .25s ease-in-out;
+    margin: 10px 0px 10px 0px;
+}
+
+    .site-btn:hover {
+        background: orange;
+        border: 1px solid #fff;
+        font-weight: 700;
+    }
+
+/* Footer */
+
+
+
+.copyright-text p {
+    color: #707070;
+    margin-top: 18px;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+
+.team-content {
+    padding: 0px 15px 15px 15px;
+}
+
+.border-team {
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+}
+
+.team-img:hover {
+    background: #f5f5f5;
+}
+
+/* Social Icons */
+
+.social-icons {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+.social {
+    margin: 7px 7px 7px 0px;
+    color: #232323;
+}
+
+
+#social-fb:hover {
+    color: #3B5998;
+    transition: all .25s;
+}
+
+#social-tw:hover {
+    color: #4099FF;
+    transition: all .25s;
+}
+
+#social-gp:hover {
+    color: #d34836;
+    transition: all .25s;
+}
+
+#social-em:hover {
+    color: #f39c12;
+    transition: all .25s;
+}
+
+
+/* Site Heading */
+.site-heading h3 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.border {
+    background: #e1e1e1;
+    height: 1px;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+}
+
+.paddingTB60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.image-aboutus-banner {
+    background: url("https://images.unsplash.com/photo-1501393091915-82f0cbd8f338?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+
+
+.lg-text {
+    font-size: 52px;
+    font-weight: 600;
+    text-transform: none;
+    color: #fff;
+    position: relative;
+    top: 100px;
+}
+
+.image-aboutus-para {
+    color: #fff;
+}
+
+
+/* font CSS */
+body {
+    font-family: 'Roboto';
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    font-style: normal;
+    color: #494949;
+    font-size: 16px;
+}
+
+a:hover {
+    color: #465cff;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    color: #000;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    color: #000;
+}
+
+h3 {
+    line-height: 26px;
+    font-size: 20px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-style: normal;
+    color: #000;
+}
+
+h4 {
+    font-size: 19px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-style: normal;
+    color: #000;
+}
+
+p {
+    font-weight: 400;
+    font-style: normal;
+    color: #494949;
+}
+
+
+a {
+    color: #494949;
+}
+
+.capital {
+    text-transform: uppercase;
+}
+
+
+i {
+    font-style: normal;
+    font-size: 42px;
+    text-align: center;
+    line-height: 64px;
+}
+
+
+
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ffffff;
+    }
+
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+            color: #b40028;
+        }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #b40028;
+        background-color: #011034;
+    }
+}
+
+/* FOOTER PART  */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap');
+
+body {
+    background-color: #f3f6fd;
+    font-size: 11.5px;
+    font-weight: bold;
+    color: rgb(189, 196, 203)
+}
+
+.card {
+    padding: 2% 7%;
+    color: #646771;
+    background-color: #16151a
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+    ul > li {
+        padding: 4px
+    }
+
+        ul > li:hover {
+            color: #957bda;
+            cursor: pointer
+        }
+
+hr {
+    border-width: 3px
+}
+
+.social > i {
+    padding: 1%;
+    font-size: 15px
+}
+
+    .social > i:hover {
+        color: #957bda;
+        cursor: pointer
+    }
+
+.policy > div {
+    padding: 4px
+}
+
+.heading {
+    font-family: 'Titillium Web', sans-serif;
+    color: white
+}
+
+.divider {
+    border-top: 2px solid rgba(189, 196, 203, 0.5);
+}
+

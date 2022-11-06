@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d79c3b9a9f54910b322d404a32bccf7" Name="Diagram1">
+        <EntityTypeShape EntityType="busspassdbModel.contact" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.DriverInfo" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.city" Width="1.5" PointX="8" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.destination" Width="1.5" PointX="12.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.location" Width="1.5" PointX="10.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.region" Width="1.5" PointX="5.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.role" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.subscription" Width="1.5" PointX="7.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.tbladmin" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.buscatg" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.busCompany" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="busspassdbModel.buses" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="busspassdbModel.FK__DriverInf__Conta__6CA31EA0" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__tbladmin__Contac__4D2A7347" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__DriverInf__CompI__5C6CB6D7" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__city__RegionID__6ABAD62E" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__location__CityID__69C6B1F5" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__destinati__Start__68D28DBC" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__tbladmin__RoleID__22401542" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__buscatg__CompID__6D9742D9" ManuallyRouted="false" />
+        <AssociationConnector Association="busspassdbModel.FK__buses__BusID__6E8B6712" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

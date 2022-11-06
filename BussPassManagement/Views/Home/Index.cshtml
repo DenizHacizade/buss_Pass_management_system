@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BussPassManagement.Models.citydb>
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="div-bck">
+        <div class="row">
+            <div>
+
+                <br /><br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h1>We Make It Easy To Buy Bus Tickets</h1>
+
+                <h2>Save More, Travel More - Book Now</h2>
+                <br />
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4 col-form">
+                <form action="#">
+                    <div class="col-md-6">
+                        <div class="form-group form-field">
+                            <label>From:</label>
+                            <select class="form-control">
+                                <option selected=""> From</option>
+                                @foreach (var i in Model)
+                                {
+                                    <option>@i.CityName</option>
+                                      }
+                            </select>
+                        </div>
+
+                        <div class="form-group form-field">
+                            <label>Date Departure: <input type="date" class="form-control" placeholder="12/16/2021" id="usr" /></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-field">
+                            <label>To:</label>
+                            <select class="form-control">
+                                <option selected=""> To</option>
+                                @foreach (var i in Model)
+                                {
+                                    <option>@i.CityName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group form-field">
+                            <label class="visually-hidden" for="inlineFormSelectPref">Passangers Numbers</label>
+                            <select class="form-control">
+                                <option selected=""> Choose Passangers Numbers</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="text-align:center;">
+                        <button type="submit" class="btn btn-primary btn-lg" style="margin-top:15px;">Select</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+</body>
+</html>

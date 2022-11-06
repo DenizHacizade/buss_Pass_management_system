@@ -1,0 +1,80 @@
+﻿@model BussPassManagement.Models.UserInfo
+@{
+    Layout = null;
+    ViewBag.Title = "Index"; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body style=" background-image: url('../photo/loginback.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; background-size: 100% 100%; ">
+    <div id="login-div">
+        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline;color:black; font-size:18px;padding-left:45px;">Login</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.FullName)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.FullName)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.FullName)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Password)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input style="color:black;" type="submit" name="name" value="Login" />
+                        <input style="color:black;" type="reset" name="name" value="Clear" />
+                    </td>
+                </tr>
+            </table>}
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>
